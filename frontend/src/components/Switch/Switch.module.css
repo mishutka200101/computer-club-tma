@@ -1,0 +1,23 @@
+.switch {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 4rem;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  right: 3%;
+  top: 50%;
+}
+
+.divider {
+  width: auto;
+  height: 1px;
+  background-color: black;
+  align-self: stretch;
+  margin-right: 15%;
+  margin-left: 15%;
+  z-index: 10000;
+}

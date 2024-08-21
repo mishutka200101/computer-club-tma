@@ -1,0 +1,32 @@
+.SwitchButton {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.imageContainer {
+  width: 90%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 1000;
+}
+
+.imageContainerClicked {
+  background-color: #1bcfdcec;
+  border-radius: 4rem;
+  border-width: 10%;
+  width: 90%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: visible;
+  position: relative;
+}
+
+.image {
+}

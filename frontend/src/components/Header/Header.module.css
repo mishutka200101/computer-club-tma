@@ -1,0 +1,24 @@
+.header {
+  background-color: blue;
+  height: 10vh;
+  font-size: 0.8em;
+  margin-left: 0px;
+  margin-right: 0px;
+  /* min-width: 900px; */
+}
+
+.stack {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  justify-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+
+@media (max-width: 100vh) {
+  .header {
+    min-width: 100%;
+    flex-direction: column; /* Stack buttons vertically on mobile */
+  }
+}
