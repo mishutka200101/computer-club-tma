@@ -20,4 +20,4 @@ RUN yarn build
 CMD ["yarn", "preview", "--host"]
 
 # Открываем порт
-EXPOSE 5173
+EXPOSE 4173
