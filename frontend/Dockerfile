@@ -1,23 +1,22 @@
-# Используем официальный образ Node.js в качестве базового
-FROM node:18-alpine
+# Stage 1: Build the application
+FROM node:18-alpine AS builder
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем package.json и yarn.lock
 COPY package.json yarn.lock ./
-
-# Устанавливаем зависимости
 RUN yarn install
 
-# Копируем остальные файлы проекта
 COPY . .
-
-# Собираем приложение
 RUN yarn build
 
-# Указываем команду для запуска приложения
+# Stage 2: Serve the application with a minimal image
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+
 CMD ["yarn", "preview", "--host"]
 
-# Открываем порт
 EXPOSE 4173
