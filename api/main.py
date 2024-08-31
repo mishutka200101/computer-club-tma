@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes import ps_router, user_router, booking_router, health_router
@@ -20,10 +20,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
-app.include_router(ps_router)
-app.include_router(user_router)
-app.include_router(booking_router)
-app.include_router(health_router)
+main_router = APIRouter(prefix='/api')
+main_router.include_router(ps_router)
+main_router.include_router(user_router)
+main_router.include_router(booking_router)
+main_router.include_router(health_router)
+app.include_router(main_router)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
