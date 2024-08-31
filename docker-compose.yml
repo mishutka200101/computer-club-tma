@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:alpine
     container_name: postgres_db
     ports:
       - "5432:5432"
@@ -13,7 +13,7 @@ services:
     volumes:
       - ./pgdata/:/var/lib/postgresql/data
     networks:
-      - comp-club
+      - network
   
   api:
     build: ./api
@@ -30,7 +30,7 @@ services:
     volumes:
       - ./api:/app
     networks:
-      - comp-club
+      - network
   
   frontend:
     build: ./frontend
@@ -42,7 +42,7 @@ services:
     depends_on:
       - api
     networks:
-      - comp-club
+      - network
 
 networks:
-  comp-club:
+  network:
