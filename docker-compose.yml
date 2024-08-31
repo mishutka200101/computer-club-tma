@@ -12,6 +12,8 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - ./pgdata/:/var/lib/postgresql/data
+    networks:
+      - comp-club
   
   api:
     build: ./api
@@ -27,6 +29,8 @@ services:
       - postgres
     volumes:
       - ./api:/app
+    networks:
+      - comp-club
   
   frontend:
     build: ./frontend
@@ -37,3 +41,8 @@ services:
       - NODE_ENV=production
     depends_on:
       - api
+    networks:
+      - comp-club
+
+networks:
+  comp-club:
