@@ -4,22 +4,27 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routes import ps_router, user_router, booking_router, health_router
 
-from database import init
+from database.init import init_db
 
+# Initialize database
+init_db()
+
+# Initialize FastAPI
+app = FastAPI()
+
+# Enable CORS
 links = [
     "http://localhost",
     "http://localhost:5174",
     "https://localhost:5174"
 ]
-
-init()
-app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=links,
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
 main_router = APIRouter(prefix='/api')
 main_router.include_router(ps_router)
 main_router.include_router(user_router)

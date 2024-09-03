@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from database import get_ps, get_all_ps, edit_ps
-from models import PS
+from database.crud import create_ps, get_ps, get_all_ps, edit_ps
+from database.models.pydantic import PSModel
 
 router = APIRouter(prefix="/ps", tags=["ps"])
 
@@ -20,8 +20,8 @@ async def getPs(ps_id: int):
     return ps.to_dict() if ps else None
 
 
-@router.post("/", name="Edit PS", description="Изменить PS")
-async def editPs(ps: PS):
+@router.post("/edit_ps", name="Edit PS", description="Изменить PS")
+async def editPs(ps: PSModel):
     result = edit_ps(ps=ps)
 
     return result

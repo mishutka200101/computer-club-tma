@@ -1,13 +1,13 @@
 from fastapi import APIRouter
 
-from database import create_booking, get_bookings, get_bookings_by_tg_id
-from models import Booking
+from database.crud import create_booking, get_bookings, get_active_bookings, get_user_bookings, get_bookings_by_seat, get_active_bookings_by_seat, edit_booking
+from database.models.pydantic import BookingModel
 
 router = APIRouter(prefix="/booking", tags=["booking"])
 
 
 @router.post("/add")
-async def createBooking(booking: Booking):
+async def createBooking(booking: BookingModel):
     result = create_booking(booking=booking)
 
     return result
@@ -19,8 +19,8 @@ async def getBookings():
     return [booking.to_dict() for booking in bookings] if bookings else None
 
 
-@router.get("/{tg_id}")
+@router.get("/user_bookings/{tg_id}")
 async def getBookingsByTgId(tg_id: str):
-    bookings = get_bookings_by_tg_id(tg_id=tg_id)
+    bookings = get_user_bookings(tg_id=tg_id)
 
     return [booking.to_dict() for booking in bookings] if bookings else None

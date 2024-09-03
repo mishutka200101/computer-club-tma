@@ -28,7 +28,6 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DB_URL=${DB_URL}
       - DB_USER=${POSTGRES_USER}
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - DB_DB=${POSTGRES_DB}
