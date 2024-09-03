@@ -28,11 +28,14 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+# Define main router
 main_router = APIRouter(prefix='/api')
+# Include other routers
 main_router.include_router(ps_router)
 main_router.include_router(user_router)
 main_router.include_router(booking_router)
 main_router.include_router(health_router)
+# Connect main router to app
 app.include_router(main_router)
 
 if __name__ == "__main__":
