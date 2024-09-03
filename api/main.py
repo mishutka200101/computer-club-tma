@@ -10,7 +10,10 @@ from database.init import init_db
 init_db()
 
 # Initialize FastAPI
-app = FastAPI()
+app = FastAPI(
+    docs_url='/api/docs',
+    redoc_url='/api/redoc',
+)
 
 # Enable CORS
 links = [
